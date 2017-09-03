@@ -156,7 +156,7 @@ export default {
           that.$store.commit('changeHighLight', obj[0].getAttribute('index'))
         }
       })
-      //是否显示歌词
+      // 是否显示歌词
       that.getLrcWrapper.onclick = function () {
         if (that.lrcFlag) {
           that.lrcFlag = false
@@ -179,7 +179,7 @@ export default {
         that.$store.commit('setProgressPlayed', curX - left)
       }
     },
-    //切换歌曲
+    // 切换歌曲
     change (direction) {
       var menu = this.$store.state.menulist
       var playIndex

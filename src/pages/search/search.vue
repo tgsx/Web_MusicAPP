@@ -1,6 +1,5 @@
 <template>
-	<transition-group name='fade' appear>
-	<div @click='hideMatch' id='search' v-show='searchFlag' key='all'>
+	<div @click='hideMatch' id='search'  key='all'>
 		<div id='title'>
 			<i class='iconfont back' @click='hide()'>&#xe67b;</i>
 			<input id='searching' v-model='searchQuery' @click='showMatch' @keyup='search' type='text' placeholder='搜索音乐、歌手、歌词、用户'></input>
@@ -141,7 +140,6 @@
 		
 	  </div>
 	</div>
-	</transition-group>
 </template>
 
 <script>
@@ -159,9 +157,6 @@ export default {
     }
   },
   computed: {
-    searchFlag () {
-      return this.$store.state.searchFlag
-    },
     playSong () {
       console.log('ss', this.$store.state.playing)
       return this.$store.state.playing
@@ -172,8 +167,7 @@ export default {
   },
   methods: {
     hide () {
-      this.$store.commit('toggleSearchFlag')
-      this.resultFlag = false
+      this.$router.go(-1)
     },
     search (e) {
       this.matches = []
@@ -263,7 +257,7 @@ export default {
       })
     },
     showSinger () {
-      this.$store.commit('toggleSingerFlag')
+      this.$router.push('singerCat')
     },
     changePlaying (item, index) {
       this.$store.commit('resetPlay')
@@ -318,22 +312,10 @@ export default {
       )
     },
     showSingerSong (item) {
-      this.$http.get(api.getAlbums(item.id)).then(
-        (res) => {
-          this.$store.commit('setAlbums', res.data.hotAlbums)
-          console.log(res.data.hotAlbums)
-          this.$http.get(api.getAlbum(this.$store.state.albums[0].id)).then(
-            (res) => {
-              console.log(res.data)
-              this.$store.commit('setAlbum', res.data)
-              this.$store.commit('toggleSSFlag')
-            }
-          )
-        }
-      )
+      this.$router.push({name: 'singerSong', params: {id: item.id}})
     },
     showAlbum (item) {
-      this.$store.state.albumFlag = true
+      this.$router.push('album')
       this.$store.commit('changeActiveAlbum', item)
       this.$http.get(api.getAlbum(item.id)).then(
         (res) => {
@@ -397,15 +379,7 @@ color: red;
 
 #search{ 
 	
-	&.fade-enter-active, &.fade-leave-active{
-      transition: all .5s linear;
-      
-    }
-    &.fade-enter, &.fade-leave-to{
-      opacity: 0;
-      transform: translate3D(100%,0,0);
-      
-    }
+	
     height:100%;
 	width:100%;
 	position:absolute;

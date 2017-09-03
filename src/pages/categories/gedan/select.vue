@@ -1,6 +1,5 @@
 <template>
-  <transition-group name='fade' appear>
-	<div id='all' v-show='selectFlag' key='all'>
+	<div id='all'  key='all'>
 		<div id='title'>
 			<i class='iconfont back' @click='hide()'>&#xe67b;</i>
 			<span class='title-name'>选择分类</span>
@@ -157,7 +156,7 @@
 		</div>
 	  </div>
 	</div>
-  </transition-group>
+  
 </template>
 
 <script>
@@ -169,7 +168,7 @@ export default {
     select (ev) {
       var e = ev || window.event
       this.$store.commit('setCat', e.target.innerText)
-      this.$store.commit('toggleSelect')
+      this.$router.go(-1)
       if (this.$store.state.selectObject) {
         this.$store.state.selectObject.style.border = '.2px solid #ece4e4'
       }
@@ -177,12 +176,7 @@ export default {
       this.$store.commit('setSelectObj', e.target)
     },
     hide () {
-      this.$store.commit('toggleSelect')
-    }
-  },
-  computed: {
-    selectFlag () {
-      return this.$store.state.selectFlag
+      this.$router.go(-1)
     }
   }
 }
@@ -195,15 +189,7 @@ export default {
 	display:none;
 }
 #all{
-	&.fade-enter-active, &.fade-leave-active{
-      transition: all .5s linear;
-      
-    }
-    &.fade-enter, &.fade-leave-to{
-      opacity: 0;
-      transform: translate3D(100%,0,0);
-      
-    }
+	
 	height:100%;
 	width:100%;
 	position:absolute;

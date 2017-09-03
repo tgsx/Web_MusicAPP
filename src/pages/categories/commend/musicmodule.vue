@@ -17,19 +17,13 @@
 </template>
 
 <script>
-import api from '../../../api'
 export default {
   name: 'MusicModule',
   props: ['title', 'music', 'tag'],
   methods: {
     showMenu (item) {
-      this.$store.state.menuFlag = true
+      this.$router.push({name: 'musicMenu', params: {id: item.id}})
       this.$store.commit('changeActiveMenu', item)
-      this.$http.get(api.getPlayListDetail(item.id)).then(
-        (res) => {
-          this.$store.commit('changeMenuList', res.data.playlist.tracks)
-        }
-      )
     },
     trigger () {
       this.$emit('slide')

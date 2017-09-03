@@ -108,7 +108,7 @@ export default {
       console.log('Closed: ' + ref)
     },
     search: function () {
-      this.$store.commit('toggleSearchFlag')
+      this.$router.push('search')
     },
     focus (index) {
       var items = document.querySelectorAll('#tabs li')
@@ -123,6 +123,9 @@ export default {
         }
       }
     }
+  },
+  mounted () {
+    this.focus(1)
   },
   components: {
     mineNav,

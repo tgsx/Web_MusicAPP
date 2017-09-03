@@ -69,13 +69,8 @@ export default {
   },
   methods: {
     showMenu (item) {
-      this.$store.state.menuFlag = true
+      this.$router.push({name: 'musicMenu', params: {id: item.id}})
       this.$store.commit('changeActiveMenu', item)
-      this.$http.get(api.getPlayListDetail(item.id)).then(
-        (res) => {
-          this.$store.commit('changeMenuList', res.data.playlist.tracks)
-        }
-      )
     },
     scroll (event) {
       if (this.gedan.scrollTop >= (this.gedan.scrollHeight - this.gedan.clientHeight)) {
@@ -107,11 +102,11 @@ export default {
       this.load(cat)
     },
     showAll () {
-      this.$store.commit('toggleSelect')
+      this.$router.push('selectStyle')
     }
   },
   mounted () {
-    this.load()
+    this.load(this.cat)
   }
 }
 </script>

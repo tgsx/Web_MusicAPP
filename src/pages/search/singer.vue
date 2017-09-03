@@ -1,6 +1,5 @@
 <template>
-	<transition-group name='fade' appear>
-		<div id='singer' v-show='singerFlag' key='singer'>
+		<div id='singer'  key='singer'>
 			<div class='singer-title'>
 				<i class='iconfont back' @click='hide()'>&#xe67b;</i>
 				<span class='title-name'>歌单分类</span>
@@ -46,7 +45,6 @@
 				</div>
 			</div>
 		</div>
-	</transition-group>
 </template>
 
 <script>
@@ -54,14 +52,9 @@ export default {
   data () {
     return {}
   },
-  computed: {
-    singerFlag () {
-      return this.$store.state.singerFlag
-    }
-  },
   methods: {
     hide () {
-      this.$store.commit('toggleSingerFlag')
+      this.$router.go(-1)
     }
   }
 }
@@ -77,15 +70,6 @@ export default {
 	z-index:600;
 	background:#f9f9f9;
 	color:#4a4848;
-	&.fade-enter-active, &.fade-leave-active{
-      transition: all .5s linear;
-      
-    }
-    &.fade-enter, &.fade-leave-to{
-      opacity: 0;
-      transform: translate3D(-100%,0,0);
-      
-    }
 
 	.singer-title{
 		width:100%;

@@ -17,7 +17,7 @@
 		<div id='wrapper'>
 			<div id='c-content'>
 				<commend @slide='slide()'></commend>
-				<gedan></gedan>
+				<gedan ></gedan>
 				<div>3</div>
 				<div>3</div>
 			</div>
@@ -45,11 +45,15 @@ export default {
   computed: {
     swiper () {
       return this.$refs.mySwiper.swiper
+    },
+    catIndex () {
+      return this.$store.state.catIndex
     }
   },
   methods: {
     focus: function (index) {
       this.activeIndex = index
+      this.$store.commit('setCatIndex', index)
       var content = document.getElementById('c-content')
       var pageWidth = document.documentElement.clientWidth
       content.style.left = -index * parseInt(pageWidth) + 'px'
@@ -58,6 +62,9 @@ export default {
     slide () {
       this.focus(1)
     }
+  },
+  mounted () {
+    this.focus(this.catIndex)
   }
 }
 </script>

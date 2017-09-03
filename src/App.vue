@@ -1,13 +1,10 @@
 <template>
   <div id="app">
-    <router-view></router-view>
-    <music-menu ></music-menu>
+  	<transition name='fade' appear>
+  		<router-view></router-view>
+  	</transition>
+    
     <play-song ></play-song>
-    <selector></selector>
-    <search></search>
-    <singer></singer>
-    <album></album>
-    <singer-song></singer-song>
     <footer-nav></footer-nav>
   </div>
 </template>
@@ -15,23 +12,11 @@
 <script>
 import playSong from './components/index/playSong'
 import footerNav from './components/index/footer'
-import musicMenu from './pages/categories/commend/musicmenu'
-import selector from './pages/categories/gedan/select'
-import search from './pages/search/search'
-import singer from './pages/search/singer'
-import album from './pages/search/album'
-import singerSong from './pages/search/singerSong'
 export default {
   name: 'app',
   components: {
     footerNav,
-    musicMenu,
-    playSong,
-    selector,
-    search,
-    singer,
-    singerSong,
-    album
+    playSong
   }
 }
 </script>
@@ -44,4 +29,15 @@ export default {
 #app {
   
 }
+.fade-enter-active, .fade-leave-active{
+    transition: all .5s linear;
+	}
+	.fade-enter, {
+	  opacity: 0;
+	  transform: translate3D(100%,0,0);
+	}
+	.fade-leave-to{
+		opacity: 0;
+	  transform: translate3D(-100%,0,0);
+	}
 </style>

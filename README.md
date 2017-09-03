@@ -6,15 +6,26 @@
 
 要想把项目运行起来，大家还需要git clone上面这位大佬的代码，在本地用node跑起来，其实也就是我们整个项目的后端，然后我们前端的工作就是拿到这些数据后想办法用美观的方式呈现出来。
 
+## 环境要求
+需要 NodeJS 6.0+ 环境
+
+## 安装  
+``` shell
+$ git clone https://github.com/tgsx/Web_MusicAPP.git
+$ npm install
+```
+
 ## 代码结构
 没用过vue-cli的同学建议先了解以下这个脚手架以及它默认生成的目录结构和运行原理，我们代码编写基本都在`src`这个目录完成，目录结构是这样的：
+```
 - src
- - api    //api的拼接
- - assets //静态资源存放的目录
- - components //我们写的可重用的组件
- - pages      //组件化的页面
- - router //路由配置
- - store //状态管理
+ +- api 《---- api的拼接
+ +- assets 《---- 静态资源存放的目录
+ +- components 《---- 我们写的可重用的组件
+ +- pages 《--- -组件化的页面
+ +- router 《---- 路由配置
+ +- store 《---- 状态管理
+```
  
 ## 注意点
 
